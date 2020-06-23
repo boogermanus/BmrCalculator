@@ -11,6 +11,7 @@ using BmrCalculator.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace BmrCalculator
 {
@@ -88,6 +89,7 @@ namespace BmrCalculator
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
                 spa.Options.SourcePath = "ClientApp";
+                spa.Options.StartupTimeout = TimeSpan.FromSeconds(200);
 
                 if (env.IsDevelopment())
                 {
