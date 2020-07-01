@@ -5,4 +5,7 @@ export class GenderConstants {
         { typevalue: 'f', caption: 'Female' },
     ];
 
+    public static getGenders(): any[] {
+        return this.genders;
+    }
 }

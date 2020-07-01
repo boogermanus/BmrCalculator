@@ -8,4 +8,8 @@ describe('GenderConstants', () => {
   it('should have static property genders', () => {
     expect(GenderConstants.genders).toBeTruthy();
   });
+
+  it('should have method getGenders', () => {
+    expect(GenderConstants.getGenders()).toBeTruthy();
+  })
 });
