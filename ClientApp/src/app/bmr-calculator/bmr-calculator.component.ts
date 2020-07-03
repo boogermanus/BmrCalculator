@@ -32,6 +32,24 @@ export class BmrCalculatorComponent implements OnInit {
     return `Height ${unit}`;
   }
 
+  get genderInvalid(): boolean {
+    return !this.gender.valid && this.gender.touched;
+  }
+
+  get nameInvalid(): boolean {
+    return !this.name.valid && this.name.touched;
+  }
+
+  get ageInvalid(): boolean {
+    return !this.age.valid && this.age.touched;
+  }
+
+  get ageInvalidMessage(): string {
+    if (!this.age.valid) {
+      return this.age.hasError('required') ? 'Age is required' : 'Age cannot be less than 0';
+    }
+  }
+
   constructor(
     private formBuilder: FormBuilder
   ) {
@@ -45,7 +63,7 @@ export class BmrCalculatorComponent implements OnInit {
     this.gender = new FormControl('', Validators.required);
     this.unitOfMeasure = new FormControl('i', Validators.required);
     this.name = new FormControl('',
-      Validators.compose([Validators.required, Validators.maxLength(100)]));
+      Validators.required);
     this.age = new FormControl(0,
       Validators.compose([Validators.required, Validators.min(0)]));
     this.weight = new FormControl(0,
