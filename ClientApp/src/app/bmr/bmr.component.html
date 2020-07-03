@@ -1,44 +1,57 @@
-<div class="row mb-2">
-    <div class="col-md-4">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Gender</span>
+<form [formGroup]="form">
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Gender</span>
+                </div>
+                <mat-select class="form-control" formControlName="gender">
+                    <mat-option *ngFor="let gender of genders" [value]="gender.typeValue">{{gender.caption}}
+                    </mat-option>
+                </mat-select>
             </div>
-            <mat-select class="form-control">
-                <mat-option *ngFor="let gender of genders" [value]="gender.typeValue">{{gender.caption}}</mat-option>
-            </mat-select>
         </div>
     </div>
-</div>
-<div class="row mb-2">
-    <div class="col-md-4">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Unit of Mass</span>
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Unit of Mass</span>
+                </div>
+                <mat-select class="form-control" formControlName="unitOfMass">
+                    <mat-option *ngFor="let uom of unitsOfMass" [value]="uom.typeValue">{{uom.caption}}</mat-option>
+                </mat-select>
             </div>
-            <mat-select class="form-control">
-                <mat-option *ngFor="let uom of unitsOfMass" [value]="uom.typeValue">{{uom.caption}}</mat-option>
-            </mat-select>
         </div>
     </div>
-</div>
-<div class="row mb-2">
-    <div class="col-md-4">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Name</span>
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Name</span>
+                </div>
+                <input type="text" class="form-control" formControlName="name">
             </div>
-            <input type="text" class="form-control">
         </div>
     </div>
-</div>
-<div class="row mb-2">
-    <div class="col-md-4">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Age</span>
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Age</span>
+                </div>
+                <input type="number" class="form-control" min="0" max="120" formControlName="age">
             </div>
-            <input type="number" class="form-control" min="0" max="120">
         </div>
     </div>
-</div>
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Weight</span>
+                </div>
+                <input type="number" class="form-control" min="0" formControlName="weight">
+            </div>
+        </div>
+    </div>
+</form>
