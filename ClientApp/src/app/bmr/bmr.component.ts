@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GenderConstants } from '../models/gender-constants';
-import { UnitOfMassConstants } from '../models/units-of-mass-constants';
+import { UnitOfMeasureConstants } from '../models/unit-of-measure-constants';
 import { FormControl, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { IBmrCalculation } from '../models/ibmr-calculation';
 
 @Component({
   selector: 'app-bmr',
@@ -11,9 +12,9 @@ import { FormControl, FormBuilder, Validators, FormGroup } from '@angular/forms'
 export class BmrComponent implements OnInit {
 
   genders: any[] = GenderConstants.getGenders();
-  unitsOfMass: any[] = UnitOfMassConstants.getUnitsOfMass();
+  unitsOfMeasure: any[] = UnitOfMeasureConstants.getUnitsOfMeasure();
   gender: FormControl;
-  unitOfMass: FormControl;
+  unitOfMeasure: FormControl;
   name: FormControl;
   age: FormControl;
   weight: FormControl;
@@ -29,7 +30,7 @@ export class BmrComponent implements OnInit {
 
   private buildForm(): FormGroup {
     this.gender = new FormControl('', Validators.required);
-    this.unitOfMass = new FormControl('', Validators.required);
+    this.unitOfMeasure = new FormControl('i', Validators.required);
     this.name = new FormControl('',
       Validators.compose([Validators.required, Validators.maxLength(100)]));
     this.age = new FormControl(0,
@@ -39,11 +40,17 @@ export class BmrComponent implements OnInit {
 
     return this.formBuilder.group({
       gender: this.gender,
-      unitOfMass: this.unitOfMass,
+      unitOfMeasure: this.unitOfMeasure,
       name: this.name,
       age: this.age,
       weight: this.weight,
     });
+  }
+
+  public save(): void {
+    const bmr: IBmrCalculation = this.form.value;
+    console.log(this.form.value);
+    console.log(bmr);
   }
 
 }

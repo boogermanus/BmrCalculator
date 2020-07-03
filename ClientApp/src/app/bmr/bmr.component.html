@@ -16,10 +16,10 @@
         <div class="col-md-4">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Unit of Mass</span>
+                    <span class="input-group-text">Unit of Measure</span>
                 </div>
-                <mat-select class="form-control" formControlName="unitOfMass">
-                    <mat-option *ngFor="let uom of unitsOfMass" [value]="uom.typeValue">{{uom.caption}}</mat-option>
+                <mat-select class="form-control" formControlName="unitOfMeasure">
+                    <mat-option *ngFor="let uom of unitsOfMeasure" [value]="uom.typeValue">{{uom.caption}}</mat-option>
                 </mat-select>
             </div>
         </div>
@@ -52,6 +52,12 @@
                 </div>
                 <input type="number" class="form-control" min="0" formControlName="weight">
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <button mat-raised-button color="primary" class="float-right ml-3" (click)="save()">Save</button>
+            <button mat-raised-button color="primary" class="float-right">Calculate</button>
         </div>
     </div>
 </form>
