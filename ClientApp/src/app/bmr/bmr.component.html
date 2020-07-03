@@ -1,1 +1,24 @@
-<p>bmr works!</p>
+<div class="row mb-2">
+    <div class="col-4">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Gender</span>
+            </div>
+            <mat-select class="form-control">
+                <mat-option *ngFor="let gender of genders" [value]="gender.typeValue">{{gender.caption}}</mat-option>
+            </mat-select>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Unit of Mass</span>
+            </div>
+            <mat-select class="form-control">
+                <mat-option *ngFor="let uom of unitsOfMass" [value]="uom.typeValue">{{uom.caption}}</mat-option>
+            </mat-select>
+        </div>
+    </div>
+</div>
