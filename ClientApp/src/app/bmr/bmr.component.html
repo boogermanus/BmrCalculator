@@ -1,5 +1,5 @@
 <div class="row mb-2">
-    <div class="col-4">
+    <div class="col-md-4">
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Gender</span>
@@ -10,8 +10,8 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-4">
+<div class="row mb-2">
+    <div class="col-md-4">
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Unit of Mass</span>
@@ -19,6 +19,26 @@
             <mat-select class="form-control">
                 <mat-option *ngFor="let uom of unitsOfMass" [value]="uom.typeValue">{{uom.caption}}</mat-option>
             </mat-select>
+        </div>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-md-4">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Name</span>
+            </div>
+            <input type="text" class="form-control">
+        </div>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-md-4">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Age</span>
+            </div>
+            <input type="number" class="form-control" min="0" max="120">
         </div>
     </div>
 </div>
