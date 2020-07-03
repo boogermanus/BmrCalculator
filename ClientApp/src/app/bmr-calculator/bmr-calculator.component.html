@@ -1,0 +1,74 @@
+<form [formGroup]="form">
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Gender</span>
+                </div>
+                <mat-select class="form-control" formControlName="gender">
+                    <mat-option *ngFor="let gender of genders" [value]="gender.typeValue">{{gender.caption}}
+                    </mat-option>
+                </mat-select>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Unit of Measure</span>
+                </div>
+                <mat-select class="form-control" formControlName="unitOfMeasure">
+                    <mat-option *ngFor="let uom of unitsOfMeasure" [value]="uom.typeValue">{{uom.caption}}</mat-option>
+                </mat-select>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Name</span>
+                </div>
+                <input type="text" class="form-control" formControlName="name">
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Age</span>
+                </div>
+                <input type="number" class="form-control" min="0" max="120" formControlName="age">
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{weightText}}</span>
+                </div>
+                <input type="number" class="form-control" min="0" formControlName="weight">
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">{{heightText}}</span>
+                </div>
+                <input type="number" class="form-control" min="0" formControlName="height">
+                <input type="number" *ngIf="unitOfMeasure.value === 'i'" class="form-control" min="0" max="11" formControlName="heightInInches">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <button mat-raised-button color="primary" class="float-right ml-3" (click)="save()">Save</button>
+            <button mat-raised-button color="primary" class="float-right" [disabled]="!form.valid">Calculate</button>
+        </div>
+    </div>
+</form>

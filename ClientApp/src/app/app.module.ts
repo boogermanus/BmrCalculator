@@ -11,6 +11,7 @@ import { BmrComponent } from './bmr/bmr.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { BmrCalculatorComponent } from './bmr-calculator/bmr-calculator.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MaterialModule } from './material.module';
     NavMenuComponent,
     HomeComponent,
     BmrComponent,
+    BmrCalculatorComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

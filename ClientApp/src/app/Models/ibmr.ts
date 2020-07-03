@@ -3,5 +3,6 @@ export interface IBmr {
     name: string;
     age: number;
     weight: number;
+    height: number;
 }
 
