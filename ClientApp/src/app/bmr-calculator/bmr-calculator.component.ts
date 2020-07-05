@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { IBmrCalculation } from '../models/ibmr-calculation';
 import { GenderConstants } from '../models/gender-constants';
 import { UnitOfMeasureConstants } from '../models/unit-of-measure-constants';
+import { IBmr } from '../models/ibmr';
 
 @Component({
   selector: 'app-bmr-calculator',
@@ -21,9 +22,11 @@ export class BmrCalculatorComponent implements OnInit {
   height: FormControl;
   heightInInches: FormControl;
   form: FormGroup;
+  isCalculated = false;
 
   get weightText(): string {
-    const unit = this.unitOfMeasure.value === UnitOfMeasureConstants.IMPERIAL ? '(lbs)' : '(kg)';
+    const unit = this.unitOfMeasure.value !== null && this.unitOfMeasure.value === UnitOfMeasureConstants.IMPERIAL
+      ? '(lbs)' : '(kg)';
     return `Weight ${unit}`;
   }
 
@@ -48,6 +51,10 @@ export class BmrCalculatorComponent implements OnInit {
     if (!this.age.valid) {
       return this.age.hasError('required') ? 'Age is required' : 'Age cannot be less than 0';
     }
+  }
+
+  get weightInvalid(): boolean {
+    return !this.weight.valid && this.weight.touched;
   }
 
   constructor(
@@ -83,7 +90,7 @@ export class BmrCalculatorComponent implements OnInit {
   }
 
   public save(): void {
-    const bmr: IBmrCalculation = this.form.value;
+    const bmr: IBmr = this.form.value;
     console.log(bmr);
   }
 
