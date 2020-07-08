@@ -1,8 +1,10 @@
 export class GenderConstants {
 
+    static readonly MALE = 'm';
+    static readonly FEMALE = 'f';
     private static genders: any[] = [
-        { typeValue: 'm', caption: 'Male' },
-        { typeValue: 'f', caption: 'Female' },
+        { typeValue: GenderConstants.MALE, caption: 'Male' },
+        { typeValue: GenderConstants.FEMALE, caption: 'Female' },
     ];
 
     public static getGenders(): any[] {

@@ -4,5 +4,6 @@ export interface IBmr {
     age: number;
     weight: number;
     height: number;
+    bmr: number;
 }
 
