@@ -1,6 +1,6 @@
 export interface IBmr {
     id?: number;
-    name: string;
+    name?: string;
     age: number;
     weight: number;
     height: number;

@@ -15,18 +15,19 @@ export class BmrCalculatorService {
   readonly FEMALE_CONSTANT = 161;
   readonly IMPERIAL_WEIGHT = 2.2;
   readonly IMPERIAL_HEIGHT = 2.54;
+  readonly HEIGHT_INCHES = 12;
   constructor() { }
 
   private calculateMetric(options: IBmrCalculation): number {
     return (this.WEIGHT_CONSTANT * options.weight)
       + (this.HEIGHT_CONSTANT * options.height)
-      + (this.AGE_CONSTANT * options.age)
-      + (options.gender === GenderConstants.MALE ? this.MALE_CONSTANT : this.FEMALE_CONSTANT)
+      - (this.AGE_CONSTANT * options.age)
+      + (options.gender === GenderConstants.MALE ? this.MALE_CONSTANT : this.FEMALE_CONSTANT);
   }
 
   private calculateImperial(options: IBmrCalculation): number {
     options.weight /= this.IMPERIAL_WEIGHT;
-    options.height *= this.IMPERIAL_HEIGHT;
+    options.height *= this.IMPERIAL_HEIGHT + (options.height + (options.heightInInches / this.HEIGHT_INCHES));
 
     return this.calculateMetric(options);
   }

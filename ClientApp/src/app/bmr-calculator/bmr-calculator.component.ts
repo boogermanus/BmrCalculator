@@ -4,6 +4,7 @@ import { IBmrCalculation } from '../models/ibmr-calculation';
 import { GenderConstants } from '../models/gender-constants';
 import { UnitOfMeasureConstants } from '../models/unit-of-measure-constants';
 import { IBmr } from '../models/ibmr';
+import { BmrCalculatorService } from '../services/bmr-calculator.service';
 
 @Component({
   selector: 'app-bmr-calculator',
@@ -58,7 +59,8 @@ export class BmrCalculatorComponent implements OnInit {
   }
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private bmCalculatorService: BmrCalculatorService
   ) {
     this.form = this.buildForm();
   }
@@ -92,6 +94,11 @@ export class BmrCalculatorComponent implements OnInit {
   public save(): void {
     const bmr: IBmr = this.form.value;
     console.log(bmr);
+  }
+
+  public calculate(): void {
+    const bmr: IBmrCalculation = this.form.value;
+    console.log(this.bmCalculatorService.calculate(bmr));
   }
 
 }
