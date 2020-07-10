@@ -6,6 +6,7 @@ import { UnitOfMeasureConstants } from '../models/unit-of-measure-constants';
 import { IBmr } from '../models/ibmr';
 import { BmrCalculatorService } from '../services/bmr-calculator.service';
 import { SettingsService } from '../services/settings.service';
+import { BmrService } from '../services/bmr.service';
 
 @Component({
   selector: 'app-bmr-calculator',
@@ -64,7 +65,8 @@ export class BmrCalculatorComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private bmCalculatorService: BmrCalculatorService,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private bmrService: BmrService
   ) {
     this.form = this.buildForm();
     const data = this.settingsService.getSettings();
@@ -100,8 +102,11 @@ export class BmrCalculatorComponent implements OnInit {
     });
   }
 
-  public save(): void {
-    console.log(this.brmCalculation);
+  public async save(): Promise<void> {
+    const bmr: IBmr = this.brmCalculation;
+    console.log(bmr);
+    await this.bmrService.saveBmr(bmr);
+    this.canSave = false;
   }
 
   public calculate(): void {

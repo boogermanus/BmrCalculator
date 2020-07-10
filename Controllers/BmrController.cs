@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using BmrCalculator.Models;
 using System.Security.Claims;
+using System;
 
 namespace BmrCalculator.Controllers
 {
@@ -40,6 +41,9 @@ namespace BmrCalculator.Controllers
         {
             if(string.IsNullOrWhiteSpace(bmr.userId))
                 bmr.userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // use UTC so that angular can properly correct the date.
+            bmr.createdOn = DateTime.UtcNow;
 
             _context.BMRs.Add(bmr);
             await _context.SaveChangesAsync();
