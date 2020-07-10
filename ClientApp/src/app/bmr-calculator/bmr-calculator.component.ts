@@ -26,6 +26,7 @@ export class BmrCalculatorComponent implements OnInit {
   form: FormGroup;
   isCalculated = false;
   bmr = 0;
+  canSave = false;
 
   get weightText(): string {
     const unit = this.unitOfMeasure.value !== null && this.unitOfMeasure.value === UnitOfMeasureConstants.IMPERIAL
@@ -100,8 +101,7 @@ export class BmrCalculatorComponent implements OnInit {
   }
 
   public save(): void {
-    const bmr: IBmr = this.form.value;
-    console.log(bmr);
+
   }
 
   public calculate(): void {
