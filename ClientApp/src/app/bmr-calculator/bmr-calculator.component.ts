@@ -5,6 +5,7 @@ import { GenderConstants } from '../models/gender-constants';
 import { UnitOfMeasureConstants } from '../models/unit-of-measure-constants';
 import { IBmr } from '../models/ibmr';
 import { BmrCalculatorService } from '../services/bmr-calculator.service';
+import { SettingsService } from '../services/settings.service';
 
 @Component({
   selector: 'app-bmr-calculator',
@@ -61,9 +62,15 @@ export class BmrCalculatorComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private bmCalculatorService: BmrCalculatorService
+    private bmCalculatorService: BmrCalculatorService,
+    private settingsService: SettingsService
   ) {
     this.form = this.buildForm();
+    const data = this.settingsService.getSettings();
+
+    this.gender.setValue(data.gender);
+    this.unitOfMeasure.setValue(data.unitOfMeasure);
+    this.name.setValue(data.name);
   }
 
   ngOnInit(): void {
@@ -101,6 +108,7 @@ export class BmrCalculatorComponent implements OnInit {
     const bmrCalculation: IBmrCalculation = {
       gender: this.gender.value,
       unitOfMeasure: this.unitOfMeasure.value,
+      name: this.name.value,
       age: this.age.value,
       weight: this.weight.value,
       height: this.height.value,
@@ -110,6 +118,12 @@ export class BmrCalculatorComponent implements OnInit {
 
     this.bmr = +this.bmCalculatorService.calculate(bmrCalculation).toFixed(2);
     this.isCalculated = true;
+
+    this.settingsService.saveSettings({
+      gender: bmrCalculation.gender,
+      unitOfMeasure: bmrCalculation.unitOfMeasure,
+      name: bmrCalculation.name
+    });
   }
 
 }
