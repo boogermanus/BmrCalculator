@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GenderConstants } from '../models/gender-constants';
-import { UnitOfMeasureConstants } from '../models/unit-of-measure-constants';
-import { FormControl, FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { IBmrCalculation } from '../models/ibmr-calculation';
+import { BmrService } from '../services/bmr.service';
+import { IBmr } from '../models/ibmr';
 
 @Component({
   selector: 'app-bmr',
@@ -11,7 +9,12 @@ import { IBmrCalculation } from '../models/ibmr-calculation';
 })
 export class BmrComponent implements OnInit {
 
-  ngOnInit(): void {
+  data: IBmr[];
 
+  constructor(private bmrService: BmrService) {}
+
+  async ngOnInit(): Promise<void> {
+    this.data = await this.bmrService.getBmrs();
   }
+
 }

@@ -11,5 +11,5 @@ describe('GenderConstants', () => {
 
   it('should have method getGenders', () => {
     expect(GenderConstants.getGenders()).toBeTruthy();
-  })
+  });
 });

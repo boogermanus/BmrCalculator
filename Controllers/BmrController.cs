@@ -43,7 +43,7 @@ namespace BmrCalculator.Controllers
                 bmr.userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             // use UTC so that angular can properly correct the date.
-            bmr.createdOn = DateTime.UtcNow;
+            bmr.createdOn = DateTime.Now;
 
             _context.BMRs.Add(bmr);
             await _context.SaveChangesAsync();

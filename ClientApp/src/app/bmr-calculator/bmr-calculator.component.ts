@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { IBmrCalculation } from '../models/ibmr-calculation';
 import { GenderConstants } from '../models/gender-constants';
@@ -7,6 +7,7 @@ import { IBmr } from '../models/ibmr';
 import { BmrCalculatorService } from '../services/bmr-calculator.service';
 import { SettingsService } from '../services/settings.service';
 import { BmrService } from '../services/bmr.service';
+import { AuthorizeService } from 'src/api-authorization/authorize.service';
 
 @Component({
   selector: 'app-bmr-calculator',
@@ -26,9 +27,9 @@ export class BmrCalculatorComponent implements OnInit {
   heightInInches: FormControl;
   form: FormGroup;
   isCalculated = false;
-  canSave = false;
   brmCalculation: IBmrCalculation;
-
+  private _canSave = false;
+  private _isAuthenticated = false;
   get weightText(): string {
     const unit = this.unitOfMeasure.value !== null && this.unitOfMeasure.value === UnitOfMeasureConstants.IMPERIAL
       ? '(lbs)' : '(kg)';
@@ -62,11 +63,16 @@ export class BmrCalculatorComponent implements OnInit {
     return !this.weight.valid && this.weight.touched;
   }
 
+  get canSave(): boolean {
+    return this._canSave && this._isAuthenticated;
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     private bmCalculatorService: BmrCalculatorService,
     private settingsService: SettingsService,
-    private bmrService: BmrService
+    private bmrService: BmrService,
+    private authService: AuthorizeService
   ) {
     this.form = this.buildForm();
     const data = this.settingsService.getSettings();
@@ -76,7 +82,10 @@ export class BmrCalculatorComponent implements OnInit {
     this.name.setValue(data.name);
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.authService.isAuthenticated().subscribe(data => {
+      this._isAuthenticated = data;
+    });
   }
 
   private buildForm(): FormGroup {
@@ -106,7 +115,7 @@ export class BmrCalculatorComponent implements OnInit {
     const bmr: IBmr = this.brmCalculation;
     console.log(bmr);
     await this.bmrService.saveBmr(bmr);
-    this.canSave = false;
+    this._canSave = false;
   }
 
   public calculate(): void {
@@ -130,7 +139,7 @@ export class BmrCalculatorComponent implements OnInit {
       name: bmrCalculation.name
     });
 
-    this.canSave = true;
+    this._canSave = true;
   }
 
 }

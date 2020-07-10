@@ -5,5 +5,6 @@ export interface IBmr {
     weight: number;
     height: number;
     bmr: number;
+    createdOn?: Date;
 }
 
