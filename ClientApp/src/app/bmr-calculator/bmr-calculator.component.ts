@@ -25,8 +25,8 @@ export class BmrCalculatorComponent implements OnInit {
   heightInInches: FormControl;
   form: FormGroup;
   isCalculated = false;
-  bmr = 0;
   canSave = false;
+  brmCalculation: IBmrCalculation;
 
   get weightText(): string {
     const unit = this.unitOfMeasure.value !== null && this.unitOfMeasure.value === UnitOfMeasureConstants.IMPERIAL
@@ -101,7 +101,7 @@ export class BmrCalculatorComponent implements OnInit {
   }
 
   public save(): void {
-
+    console.log(this.brmCalculation);
   }
 
   public calculate(): void {
@@ -116,7 +116,7 @@ export class BmrCalculatorComponent implements OnInit {
       bmr: 0
     };
 
-    this.bmr = +this.bmCalculatorService.calculate(bmrCalculation).toFixed(2);
+    this.brmCalculation = this.bmCalculatorService.calculate(bmrCalculation);
     this.isCalculated = true;
 
     this.settingsService.saveSettings({
@@ -124,6 +124,8 @@ export class BmrCalculatorComponent implements OnInit {
       unitOfMeasure: bmrCalculation.unitOfMeasure,
       name: bmrCalculation.name
     });
+
+    this.canSave = true;
   }
 
 }
