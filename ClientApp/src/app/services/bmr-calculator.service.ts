@@ -12,9 +12,9 @@ export class BmrCalculatorService {
   readonly HEIGHT_CONSTANT = 6.25;
   readonly AGE_CONSTANT = 5;
   readonly MALE_CONSTANT = 5;
-  readonly FEMALE_CONSTANT = 161;
+  readonly FEMALE_CONSTANT = -161;
   readonly IMPERIAL_WEIGHT = 2.2;
-  readonly IMPERIAL_HEIGHT = 2.54;
+  readonly IMPERIAL_HEIGHT = 30.48;
   readonly HEIGHT_INCHES = 12;
   constructor() { }
 
@@ -27,7 +27,8 @@ export class BmrCalculatorService {
 
   private calculateImperial(options: IBmrCalculation): number {
     options.weight /= this.IMPERIAL_WEIGHT;
-    options.height *= this.IMPERIAL_HEIGHT + (options.height + (options.heightInInches / this.HEIGHT_INCHES));
+    options.height = options.height + (options.heightInInches / this.HEIGHT_INCHES);
+    options.height *= this.IMPERIAL_HEIGHT;
 
     return this.calculateMetric(options);
   }

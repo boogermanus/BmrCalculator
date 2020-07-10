@@ -24,6 +24,7 @@ export class BmrCalculatorComponent implements OnInit {
   heightInInches: FormControl;
   form: FormGroup;
   isCalculated = false;
+  bmr = 0;
 
   get weightText(): string {
     const unit = this.unitOfMeasure.value !== null && this.unitOfMeasure.value === UnitOfMeasureConstants.IMPERIAL
@@ -97,8 +98,18 @@ export class BmrCalculatorComponent implements OnInit {
   }
 
   public calculate(): void {
-    const bmr: IBmrCalculation = this.form.value;
-    console.log(this.bmCalculatorService.calculate(bmr));
+    const bmrCalculation: IBmrCalculation = {
+      gender: this.gender.value,
+      unitOfMeasure: this.unitOfMeasure.value,
+      age: this.age.value,
+      weight: this.weight.value,
+      height: this.height.value,
+      heightInInches: this.heightInInches.value,
+      bmr: 0
+    };
+
+    this.bmr = +this.bmCalculatorService.calculate(bmrCalculation).toFixed(2);
+    this.isCalculated = true;
   }
 
 }
