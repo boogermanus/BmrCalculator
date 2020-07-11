@@ -55,12 +55,18 @@ export class BmrCalculatorComponent implements OnInit {
 
   get ageInvalidMessage(): string {
     if (!this.age.valid) {
-      return this.age.hasError('required') ? 'Age is required' : 'Age cannot be less than 0';
+      return this.age.hasError('required') ? 'Age is required' : 'Age cannot be less than 1';
     }
   }
 
   get weightInvalid(): boolean {
     return !this.weight.valid && this.weight.touched;
+  }
+
+  get weightInvalidMessage(): string {
+    if (!this.age.valid) {
+      return this.weight.hasError('required') ? 'Weight is required' : 'Weight cannot be less than 1';
+    }
   }
 
   get canSave(): boolean {
@@ -94,9 +100,9 @@ export class BmrCalculatorComponent implements OnInit {
     this.name = new FormControl('',
       Validators.required);
     this.age = new FormControl(0,
-      Validators.compose([Validators.required, Validators.min(0)]));
+      Validators.compose([Validators.required, Validators.min(1)]));
     this.weight = new FormControl(0,
-        Validators.compose([Validators.required, Validators.min(0)]));
+        Validators.compose([Validators.required, Validators.min(1)]));
     this.height = new FormControl(0, Validators.required);
     this.heightInInches = new FormControl(0, Validators.required);
 
@@ -125,6 +131,8 @@ export class BmrCalculatorComponent implements OnInit {
       const field = this.form.get(control);
       field.markAsTouched();
     });
+
+    if (!this.form.valid) { return ;}
 
     const bmrCalculation: IBmrCalculation = {
       gender: this.gender.value,
