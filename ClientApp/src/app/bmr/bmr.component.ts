@@ -20,10 +20,7 @@ export class BmrComponent implements OnInit {
   // column definiations
   columns = [
     { columnDef: 'age', header: 'Age' },
-    {
-      columnDef: 'weight',
-      header: 'Weight',
-      cell: (element: any) => `${this.decimalPipe.transform(element.weight, '1.2-2')}`},
+    { columnDef: 'weight', header: 'Weight' },
     { columnDef: 'height', header: 'Height' },
     { columnDef: 'bmr', header: 'BMR' },
     {

@@ -27,7 +27,10 @@ namespace BmrCalculator.Controllers
             if (string.IsNullOrWhiteSpace(userId))
                 userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            return await _context.BMRs.Where(bmr => bmr.userId == userId).ToArrayAsync();
+            return await _context.BMRs
+                .Where(bmr => bmr.userId == userId)
+                .Select(bmr => FormatBmr(bmr))
+                .ToArrayAsync();
         }
 
         [HttpGet("all")]
@@ -42,13 +45,21 @@ namespace BmrCalculator.Controllers
             if(string.IsNullOrWhiteSpace(bmr.userId))
                 bmr.userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // use UTC so that angular can properly correct the date.
             bmr.createdOn = DateTime.Now;
 
             _context.BMRs.Add(bmr);
             await _context.SaveChangesAsync();
 
             return bmr;
+        }
+
+        private static Bmr FormatBmr(Bmr value)
+        {
+            value.weight = Math.Round(value.weight, 2);
+            value.height = Math.Round(value.height, 2);
+            value.bmr = Math.Round(value.bmr, 3);
+
+            return value;
         }
     }
 }
