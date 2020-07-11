@@ -26,7 +26,6 @@ export class BmrComponent implements OnInit {
     {
       columnDef: 'createdOn',
       header: 'Created On',
-      // notice that we can provide a cell property to privide the cell value if we need to do a transform
       cell: (element: any) => `${this.datePipe.transform(element.createdOn, 'short')}`
     }
   ];

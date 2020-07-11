@@ -2,6 +2,7 @@
     <ng-container [matColumnDef]="column.columnDef" *ngFor="let column of columns">
         <mat-header-cell mat-sort-header *matHeaderCellDef>{{column.header}}</mat-header-cell>
         <mat-cell *matCellDef="let element">
+            <!-- if this row has a cell function use it, otherwise, return the row data -->
             {{column.cell === undefined ? element[column.columnDef] : column.cell(element)}}
         </mat-cell>
     </ng-container>
