@@ -112,6 +112,7 @@ export class BmrCalculatorComponent implements OnInit {
   }
 
   public async save(): Promise<void> {
+
     const bmr: IBmr = this.brmCalculation;
     console.log(bmr);
     await this.bmrService.saveBmr(bmr);
@@ -119,6 +120,12 @@ export class BmrCalculatorComponent implements OnInit {
   }
 
   public calculate(): void {
+
+    Object.keys(this.form.controls).forEach(control => {
+      const field = this.form.get(control);
+      field.markAsTouched();
+    });
+
     const bmrCalculation: IBmrCalculation = {
       gender: this.gender.value,
       unitOfMeasure: this.unitOfMeasure.value,
@@ -140,6 +147,8 @@ export class BmrCalculatorComponent implements OnInit {
     });
 
     this._canSave = true;
+
+    
   }
 
 }
