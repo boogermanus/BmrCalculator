@@ -15,9 +15,9 @@ namespace BmrCalculator.Models
         public int id { get; set; }
         public string name { get; set; }
         public int age { get; set; }
-        public decimal weight { get; set; }
-        public decimal height { get; set; }
-        public decimal bmr { get; set; }
+        public double weight { get; set; }
+        public double height { get; set; }
+        public double bmr { get; set; }
         public DateTime createdOn { get; set; }
         public string userId { get; set; }
         public ApplicationUser User { get; set; }
