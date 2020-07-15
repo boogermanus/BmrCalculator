@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { BmrCalculatorComponent } from './bmr-calculator/bmr-calculator.component';
+import { KilogramsToPoundsPipe } from './pipes/kilograms-to-pounds.pipe';
+import { CentimetersToFeetPipe } from './pipes/centimeters-to-feet.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { BmrCalculatorComponent } from './bmr-calculator/bmr-calculator.componen
     HomeComponent,
     BmrComponent,
     BmrCalculatorComponent,
+    KilogramsToPoundsPipe,
+    CentimetersToFeetPipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
