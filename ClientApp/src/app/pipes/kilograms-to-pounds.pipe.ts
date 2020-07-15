@@ -9,11 +9,11 @@ export class KilogramsToPoundsPipe implements PipeTransform {
 
   constructor(private settingsService: SettingsService) {}
 
-  transform(value: number, ...args: unknown[]): number {
+  transform(value: any, ...args: unknown[]): number {
     const settings = this.settingsService.getSettings();
 
     return settings.unitOfMeasure === UnitOfMeasureConstants.IMPERIAL
-      ? value * UnitOfMeasureConstants.KG_TO_LBS
+      ? +(value * UnitOfMeasureConstants.KG_TO_LBS).toFixed(2)
       : value;
   }
 
