@@ -52,6 +52,7 @@ export class BmrComponent implements OnInit {
     settingsService: SettingsService) {
     this.weightPipe = new KilogramsToPoundsPipe(settingsService);
     this.heightPipe = new CentimetersToFeetPipe(settingsService);
+    this.displayedColumns.push('actions');
   }
 
   async ngOnInit(): Promise<void> {
