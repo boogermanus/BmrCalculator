@@ -65,13 +65,16 @@
                     <span class="input-group-text">{{heightText}}</span>
                 </div>
                 <input type="number" class="form-control" min="0" formControlName="height">
-                <input type="number" *ngIf="unitOfMeasure.value === 'i'" class="form-control" min="0" max="11" formControlName="heightInInches">
+                <input type="number" *ngIf="unitOfMeasure.value === 'i'" class="form-control" min="0" max="11"
+                    formControlName="heightInInches">
             </div>
+            <label class="alert alert-danger mt-1" *ngIf="heightInvalid">Invalid Height</label>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <button mat-raised-button color="primary" class="float-right ml-3" [disabled]="!canSave" (click)="save()">Save</button>
+            <button mat-raised-button color="primary" class="float-right ml-3" [disabled]="!canSave"
+                (click)="save()">Save</button>
             <button mat-raised-button color="primary" class="float-right" (click)="calculate()">Calculate</button>
         </div>
     </div>

@@ -64,9 +64,14 @@ export class BmrCalculatorComponent implements OnInit {
   }
 
   get weightInvalidMessage(): string {
-    if (!this.age.valid) {
+    if (!this.weight.valid) {
       return this.weight.hasError('required') ? 'Weight is required' : 'Weight cannot be less than 1';
     }
+  }
+
+  get heightInvalid(): boolean {
+    return (!this.height.valid && this.height.touched)
+    || (!this.heightInInches.valid && this.heightInInches.touched);
   }
 
   get canSave(): boolean {
@@ -103,8 +108,10 @@ export class BmrCalculatorComponent implements OnInit {
       Validators.compose([Validators.required, Validators.min(1)]));
     this.weight = new FormControl(0,
         Validators.compose([Validators.required, Validators.min(1)]));
-    this.height = new FormControl(0, Validators.required);
-    this.heightInInches = new FormControl(0, Validators.required);
+    this.height = new FormControl(0,
+      Validators.compose([Validators.required, Validators.min(1)]));
+    this.heightInInches = new FormControl(0,
+      Validators.compose([Validators.required, Validators.min(0)]));
 
     return this.formBuilder.group({
       gender: this.gender,
@@ -132,7 +139,7 @@ export class BmrCalculatorComponent implements OnInit {
       field.markAsTouched();
     });
 
-    if (!this.form.valid) { return ;}
+    if (!this.form.valid) { return ; }
 
     const bmrCalculation: IBmrCalculation = {
       gender: this.gender.value,
@@ -156,7 +163,6 @@ export class BmrCalculatorComponent implements OnInit {
 
     this._canSave = true;
 
-    
   }
 
 }
