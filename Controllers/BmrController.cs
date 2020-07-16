@@ -52,6 +52,20 @@ namespace BmrCalculator.Controllers
             return bmr;
         }
 
+        [HttpDelete("{id}")]
+        public async Task<Bmr> RemoveBmr(int id)
+        {
+            var found = await _context.BMRs.FirstOrDefaultAsync(bmr => bmr.id == id);
+
+            if(found != null)
+            {
+                _context.BMRs.Remove(found);
+                await _context.SaveChangesAsync();
+            }
+
+            return found == null ? null : found;
+        }
+
         private static Bmr FormatBmr(Bmr value)
         {
             value.weight = Math.Round(value.weight, 2);
