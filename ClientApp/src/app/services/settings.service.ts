@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IBmrSettings } from '../models/ibmr-settings';
+import { GenderConstants } from '../models/gender-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class SettingsService {
 
   getSettings(): IBmrSettings {
     const value: IBmrSettings = {
-      gender: 'm',
-      unitOfMeasure: 'i',
+      gender: '',
+      unitOfMeasure: '',
       name: ''
     };
 
