@@ -8,7 +8,7 @@ import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 const routes: Route[] = [
     { path: 'mybmrs', component: BmrComponent, canActivate: [AuthorizeGuard] },
     { path: 'calculate', component: BmrCalculatorComponent},
-    { path: '**', component: HomeComponent, pathMatch: 'full' },
+    { path: '**', component: BmrCalculatorComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

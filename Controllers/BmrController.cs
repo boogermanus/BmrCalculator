@@ -28,6 +28,7 @@ namespace BmrCalculator.Controllers
                 userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             return await _context.BMRs
+                .Where( bmr => bmr.userId == userId)
                 .Select(bmr => FormatBmr(bmr))
                 .ToArrayAsync();
         }
