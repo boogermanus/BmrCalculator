@@ -29,6 +29,7 @@ namespace BmrCalculator.Controllers
 
             return await _context.BMRs
                 .Where( bmr => bmr.userId == userId)
+                .OrderByDescending(bmr => bmr.createdOn)
                 .Select(bmr => FormatBmr(bmr))
                 .ToArrayAsync();
         }
