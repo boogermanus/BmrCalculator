@@ -10,7 +10,7 @@
     <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let element">
-            <button mat-icon-button matTooltip="Remove" matTooltipPosition="right" color="primary">
+            <button mat-icon-button matTooltip="Remove" matTooltipPosition="right" color="primary" (click)="delete(element.id)">
                 <mat-icon>remove</mat-icon>
             </button>
         </mat-cell>

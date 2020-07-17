@@ -56,6 +56,16 @@ export class BmrComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    await this.loadData();
+  }
+
+  async delete(id: number): Promise<void> {
+    const data = await this.bmrService.deleteBmr(id);
+    await this.loadData();
+    return;
+  }
+
+  async loadData() {
     this.dataSource = new MatTableDataSource<IBmr>(await this.bmrService.getBmrs());
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;

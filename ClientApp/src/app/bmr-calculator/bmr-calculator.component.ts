@@ -30,6 +30,7 @@ export class BmrCalculatorComponent implements OnInit {
   brmCalculation: IBmrCalculation;
   private _canSave = false;
   private _isAuthenticated = false;
+
   get weightText(): string {
     const unit = this.unitOfMeasure.value !== null && this.unitOfMeasure.value === UnitOfMeasureConstants.IMPERIAL
       ? '(lbs)' : '(kg)';
@@ -102,8 +103,7 @@ export class BmrCalculatorComponent implements OnInit {
   private buildForm(): FormGroup {
     this.gender = new FormControl('', Validators.required);
     this.unitOfMeasure = new FormControl('i', Validators.required);
-    this.name = new FormControl('',
-      Validators.required);
+    this.name = new FormControl('', Validators.required);
     this.age = new FormControl(0,
       Validators.compose([Validators.required, Validators.min(1)]));
     this.weight = new FormControl(0,
@@ -111,7 +111,7 @@ export class BmrCalculatorComponent implements OnInit {
     this.height = new FormControl(0,
       Validators.compose([Validators.required, Validators.min(1)]));
     this.heightInInches = new FormControl(0,
-      Validators.compose([Validators.required, Validators.min(0)]));
+      Validators.compose([Validators.required, Validators.min(0), Validators.max(11)]));
 
     return this.formBuilder.group({
       gender: this.gender,
@@ -134,6 +134,7 @@ export class BmrCalculatorComponent implements OnInit {
 
   public calculate(): void {
 
+    // check validators on all controls
     Object.keys(this.form.controls).forEach(control => {
       const field = this.form.get(control);
       field.markAsTouched();

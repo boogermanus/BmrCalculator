@@ -21,4 +21,8 @@ export class BmrService {
   getBmrs(): Promise<IBmr[]> {
     return this.httpClient.get<IBmr[]>(this.URL).toPromise();
   }
+
+  deleteBmr(id: number): Promise<IBmr> {
+    return this.httpClient.delete<IBmr>(`${this.URL}/${id}`).toPromise();
+  }
 }
