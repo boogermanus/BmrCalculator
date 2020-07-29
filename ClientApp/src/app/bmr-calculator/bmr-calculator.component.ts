@@ -1,9 +1,9 @@
 import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { IBmrCalculation } from '../models/ibmr-calculation';
-import { GenderConstants } from '../models/gender-constants';
-import { UnitOfMeasureConstants } from '../models/unit-of-measure-constants';
-import { IBmr } from '../models/ibmr';
+import { IBmrCalculation } from '../Models/ibmr-calculation';
+import { GenderConstants } from '../Models/gender-constants';
+import { UnitOfMeasureConstants } from '../Models/unit-of-measure-constants';
+import { IBmr } from '../Models/ibmr';
 import { BmrCalculatorService } from '../services/bmr-calculator.service';
 import { SettingsService } from '../services/settings.service';
 import { BmrService } from '../services/bmr.service';
