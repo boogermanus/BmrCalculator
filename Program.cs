@@ -22,13 +22,7 @@ namespace BmrCalculator
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseConfiguration(new ConfigurationBuilder()
-                        .SetBasePath(Directory.GetCurrentDirectory())
-                        .AddJsonFile("appsettings.json", true)
-                        .AddCommandLine(args)
-                        .Build());
                     webBuilder.UseStartup<Startup>();
-
                 });
         }
     }
