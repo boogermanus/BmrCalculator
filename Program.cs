@@ -17,16 +17,18 @@ namespace BmrCalculator
             CreateHostBuilder(args).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) {
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
                     webBuilder.UseConfiguration(new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json", true)
-                    .AddCommandLine(args)
-                    .Build());
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json", true)
+                        .AddCommandLine(args)
+                        .Build());
+                    webBuilder.UseStartup<Startup>();
+
                 });
         }
     }
