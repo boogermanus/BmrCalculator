@@ -12,4 +12,21 @@ export class UnitOfMeasureConstants {
     public static getUnitsOfMeasure(): any[] {
         return this.unitsOfMeasure;
     }
+
+    public static getWeightText(uom: string): string {
+        if (uom === '') {
+            return 'Height';
+        }
+        const unit = uom !== null && uom === UnitOfMeasureConstants.IMPERIAL
+        ? '(lbs)' : '(kg)';
+      return `Weight ${unit}`;
+    }
+
+    public static getHeightText(uom: string): string {
+        if (uom === '') {
+            return 'Weight';
+        }
+        const unit = uom === UnitOfMeasureConstants.IMPERIAL ? '(ft/in)' : '(cm)';
+        return `Height ${unit}`;
+    }
 }

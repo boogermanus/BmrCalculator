@@ -10,7 +10,7 @@
                     </mat-option>
                 </mat-select>
             </div>
-            <label class="alert alert-danger mt-1" *ngIf="genderInvalid">Gender is required</label>
+            <label class="alert alert-danger mt-1" *ngIf="controlIsInvalid(gender)">Gender is required</label>
         </div>
     </div>
     <div class="row mb-2">
@@ -23,6 +23,7 @@
                     <mat-option *ngFor="let uom of unitsOfMeasure" [value]="uom.typeValue">{{uom.caption}}</mat-option>
                 </mat-select>
             </div>
+            <label class="alert alert-danger mt-1" *ngIf="controlIsInvalid(unitOfMeasure)">Unit of Measure is required</label>
         </div>
     </div>
     <div class="row mb-2">
@@ -33,7 +34,7 @@
                 </div>
                 <input type="text" class="form-control" formControlName="name">
             </div>
-            <label class="alert alert-danger mt-1" *ngIf="nameInvalid">Name is required</label>
+            <label class="alert alert-danger mt-1" *ngIf="controlIsInvalid(name)">Name is required</label>
         </div>
     </div>
     <div class="row mb-2">
@@ -44,7 +45,7 @@
                 </div>
                 <input type="number" class="form-control" min="0" max="120" step="1" formControlName="age">
             </div>
-            <label class="alert alert-danger mt-1" *ngIf="ageInvalid">{{ageInvalidMessage}}</label>
+            <label class="alert alert-danger mt-1" *ngIf="controlIsInvalid(age)">{{ageInvalidMessage}}</label>
         </div>
     </div>
     <div class="row mb-2">
@@ -55,7 +56,7 @@
                 </div>
                 <input type="number" class="form-control" min="0" formControlName="weight">
             </div>
-            <label class="alert alert-danger mt-1" *ngIf="weightInvalid">{{weightInvalidMessage}}</label>
+            <label class="alert alert-danger mt-1" *ngIf="controlIsInvalid(weight)">{{weightInvalidMessage}}</label>
         </div>
     </div>
     <div class="row mb-2">

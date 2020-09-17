@@ -1,5 +1,5 @@
 import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { IBmrCalculation } from '../Models/ibmr-calculation';
 import { GenderConstants } from '../Models/gender-constants';
 import { UnitOfMeasureConstants } from '../Models/unit-of-measure-constants';
@@ -32,36 +32,17 @@ export class BmrCalculatorComponent implements OnInit {
   private _isAuthenticated = false;
 
   get weightText(): string {
-    const unit = this.unitOfMeasure.value !== null && this.unitOfMeasure.value === UnitOfMeasureConstants.IMPERIAL
-      ? '(lbs)' : '(kg)';
-    return `Weight ${unit}`;
+    return UnitOfMeasureConstants.getWeightText(this.unitOfMeasure.value);
   }
 
   get heightText(): string {
-    const unit = this.unitOfMeasure.value === UnitOfMeasureConstants.IMPERIAL ? '(ft/in)' : '(cm)';
-    return `Height ${unit}`;
-  }
-
-  get genderInvalid(): boolean {
-    return !this.gender.valid && this.gender.touched;
-  }
-
-  get nameInvalid(): boolean {
-    return !this.name.valid && this.name.touched;
-  }
-
-  get ageInvalid(): boolean {
-    return !this.age.valid && this.age.touched;
+    return UnitOfMeasureConstants.getHeightText(this.unitOfMeasure.value);
   }
 
   get ageInvalidMessage(): string {
     if (!this.age.valid) {
       return this.age.hasError('required') ? 'Age is required' : 'Age cannot be less than 1';
     }
-  }
-
-  get weightInvalid(): boolean {
-    return !this.weight.valid && this.weight.touched;
   }
 
   get weightInvalidMessage(): string {
@@ -164,6 +145,10 @@ export class BmrCalculatorComponent implements OnInit {
 
     this._canSave = true;
 
+  }
+
+  public controlIsInvalid(control: AbstractControl): boolean {
+    return !control.valid && control.touched;
   }
 
 }
