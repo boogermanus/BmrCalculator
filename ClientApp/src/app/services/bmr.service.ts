@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IBmr } from '../Models/ibmr';
+import { IBmr } from '../models/ibmr';
 
 @Injectable({
   providedIn: 'root'

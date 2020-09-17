@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BmrService } from '../services/bmr.service';
-import { IBmr } from '../Models/ibmr';
+import { IBmr } from '../models/ibmr';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';

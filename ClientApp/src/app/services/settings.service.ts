@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IBmrSettings } from '../Models/ibmr-settings';
-import { GenderConstants } from '../Models/gender-constants';
+import { IBmrSettings } from '../models/ibmr-settings';
+import { GenderConstants } from '../models/gender-constants';
 
 @Injectable({
   providedIn: 'root'

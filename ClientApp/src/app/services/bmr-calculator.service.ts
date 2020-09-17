@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { IBmrCalculation } from '../Models/ibmr-calculation';
-import { GenderConstants } from '../Models/gender-constants';
-import { UnitOfMeasureConstants } from '../Models/unit-of-measure-constants';
-import { IBmr } from '../Models/ibmr';
+import { IBmrCalculation } from '../models/ibmr-calculation';
+import { GenderConstants } from '../models/gender-constants';
+import { UnitOfMeasureConstants } from '../models/unit-of-measure-constants';
+import { IBmr } from '../models/ibmr';
 
 @Injectable({
   providedIn: 'root'

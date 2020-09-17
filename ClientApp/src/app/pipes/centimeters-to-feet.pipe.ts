@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { SettingsService } from '../services/settings.service';
-import { UnitOfMeasureConstants } from '../Models/unit-of-measure-constants';
+import { UnitOfMeasureConstants } from '../models/unit-of-measure-constants';
 
 @Pipe({
   name: 'centimetersToFeet'
