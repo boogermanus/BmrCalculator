@@ -10,7 +10,7 @@
             "name": "Attach to Chrome",
             "port": 9222,
             "webRoot": "${workspaceFolder}/ClientApp",
-            "url": "https://localhost:5001"
+            "urlFilter": "https://localhost:5000*"
         },
         {
             "name": ".NET Core Launch (web)",
