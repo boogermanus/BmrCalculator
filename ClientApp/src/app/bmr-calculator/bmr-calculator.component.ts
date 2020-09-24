@@ -53,7 +53,7 @@ export class BmrCalculatorComponent implements OnInit {
 
   get heightInvalid(): boolean {
     return (!this.height.valid && this.height.touched)
-    || (!this.heightInInches.valid && this.heightInInches.touched);
+      || (!this.heightInInches.valid && this.heightInInches.touched);
   }
 
   get canSave(): boolean {
