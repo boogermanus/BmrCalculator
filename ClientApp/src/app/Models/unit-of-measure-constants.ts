@@ -15,7 +15,7 @@ export class UnitOfMeasureConstants {
 
     public static getWeightText(uom: string): string {
         if (uom === '') {
-            return 'Height';
+            return 'Weight';
         }
         const unit = uom !== null && uom === UnitOfMeasureConstants.IMPERIAL
         ? '(lbs)' : '(kg)';
@@ -24,7 +24,7 @@ export class UnitOfMeasureConstants {
 
     public static getHeightText(uom: string): string {
         if (uom === '') {
-            return 'Weight';
+            return 'Height';
         }
         const unit = uom === UnitOfMeasureConstants.IMPERIAL ? '(ft/in)' : '(cm)';
         return `Height ${unit}`;
