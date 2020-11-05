@@ -65,11 +65,17 @@ namespace BmrCalculator
             else
             {
                 app.UseExceptionHandler("/Error");
+
+                // does this really need to happen?
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                // app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // in production we'll use a redirect
+            // app.UseHttpsRedirection();
+
+            // fuck google chrome and its policies against free internet
+            app.UseCookiePolicy(new CookiePolicyOptions {MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax});
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {
