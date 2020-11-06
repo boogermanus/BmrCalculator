@@ -74,7 +74,7 @@ namespace BmrCalculator
             // in production we'll use a redirect
             // app.UseHttpsRedirection();
 
-            // fuck google chrome and its policies against free internet
+            // I hate google chrome.
             app.UseCookiePolicy(new CookiePolicyOptions {MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax});
             app.UseStaticFiles();
             if (!env.IsDevelopment())
