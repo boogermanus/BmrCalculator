@@ -3,19 +3,11 @@
     <script src="~/Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 </environment>
 <environment exclude="Development">
-    <script src="~/Identity/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Identity/js/site.js" asp-append-version="true"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"
-            asp-fallback-src="~/Identity/lib/jquery-validation/dist/jquery.validate.min.js"
-            asp-fallback-test="window.jQuery && window.jQuery.validator"
-            crossorigin="anonymous"
-            integrity="sha384-rZfj/ogBloos6wzLGpPkkOr/gpkBNLZ6b6yLy4o+ok+t/SAKlL5mvXLr0OXNi1Hp">
+    <!-- hacked from the intial setup because production won't work without cdn loads -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/bootstrap.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js">
     </script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.9/jquery.validate.unobtrusive.min.js"
-            asp-fallback-src="~/Identity/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
-            asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive"
-            crossorigin="anonymous"
-            integrity="sha384-ifv0TYDWxBHzvAk2Z0n8R434FL1Rlv/Av18DXE43N/1rvHyOG4izKst0f2iSLdds">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.9/jquery.validate.unobtrusive.min.js">
     </script>
 </environment>
