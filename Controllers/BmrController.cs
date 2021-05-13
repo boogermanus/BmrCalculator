@@ -12,7 +12,7 @@ namespace BmrCalculator.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class BMRController : ControllerBase
+    public class BMRController : Controller
     {
         private readonly ApplicationDbContext _context;
 
