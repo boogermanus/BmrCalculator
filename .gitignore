@@ -230,3 +230,4 @@ _Pvt_Extensions
 .fake/
 .idea/
 app.production.db
+.vscode
